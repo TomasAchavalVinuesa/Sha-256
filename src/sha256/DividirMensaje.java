@@ -4,9 +4,6 @@
  */
 package sha256;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author tavto
@@ -35,19 +32,18 @@ public class DividirMensaje {
 
     // Método para dividir el mensaje binario en piezas de 512 bits
     public static List<int[]> dividirEnPiezas(String mensaje, int cantPiezas) {
-        int[] mensajeExtendido = convertirStringABits(mensaje); // Convertir el mensaje a binario
-
-        if (mensajeExtendido.length % 512 != 0) {
-            throw new IllegalArgumentException("El tamaño del mensajeExtendido debe ser múltiplo de 512.");
-        }
-
         int tamanioPieza = 512;
         List<int[]> piezas = new ArrayList<>();
 
+        
         // Dividir el mensajeExtendido en piezas de 512 bits
         for (int i = 0; i < cantPiezas; i++) {
             int[] pieza = new int[tamanioPieza];
-            System.arraycopy(mensajeExtendido, i * tamanioPieza, pieza, 0, tamanioPieza);
+            int j = 0;
+            for(int k = 0; k<512; k++){
+             j = (i*512)+ k; 
+            pieza[k] = Character.getNumericValue( mensaje.charAt(j));
+            }
             piezas.add(pieza);
         }
 

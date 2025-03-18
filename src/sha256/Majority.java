@@ -4,7 +4,6 @@
  */
 package sha256;
 
-import java.math.BigInteger;
 
 /**
  *
@@ -20,13 +19,7 @@ public class Majority {
         int[] andxz = And.and(x, z);
         int[] andyz = And.and(y, z);
         
-        long decimalAndxy = BinaryToDecimal.binaryToDecimal(andxy);
-        long decimalAndxz = BinaryToDecimal.binaryToDecimal(andxz);
-        long decimalAndyz = BinaryToDecimal.binaryToDecimal(andyz);
-        
-        long sumMod2321 = ModuloSum.moduloSum(decimalAndxy, decimalAndxz);
-        long sumMod2322 = ModuloSum.moduloSum(sumMod2321, decimalAndyz);
-        
-        return DecimalToBinary.decimalToBinary(sumMod2322);
+        int[]  XorAndxyAndxz = Xor.xor(andxy, andxz);
+        return Xor.xor(XorAndxyAndxz, andyz);
     }
 }

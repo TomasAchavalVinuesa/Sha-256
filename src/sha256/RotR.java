@@ -4,6 +4,8 @@
  */
 package sha256;
 
+import java.util.Arrays;
+
 /**
  *
  * @author tavto
@@ -14,14 +16,15 @@ public class RotR {
             throw new IllegalArgumentException("El arreglo debe ser de 32 bits.");
         }
         int aux;
-        for (int j = 0; j< n; j++){
-            aux = x[31];
+        int[] copia = Arrays.copyOf(x, x.length);
+        for (int j = 0; j < n; j++) {
+            aux = copia[31];
             for (int i = 31; i > 0; i--) {
-                x[(i)] = x[i-1];
+                copia[i] = copia[i-1];
             }
-            x[0]= aux;
+            copia[0] = aux;
         }
-        return x;
+    return copia;
     }
 
 }

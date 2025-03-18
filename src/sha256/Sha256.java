@@ -4,7 +4,6 @@
  */
 package sha256;
 
-import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,9 +13,9 @@ public class Sha256 {
     
         //ETAPA DE RELLENO
         //paso 1 definir el mensaje
-        String mensaje = "Mas Dios muestra su amor para con nosotros, en que siendo aun pecadores, Cristo dio su vida por nosotros.";
+        String mensaje = "Si";
         //Fin Paso 1
-        
+        //
         //Paso 2 Obtener el mensaje extendido
         String mensajeExtendido = MensajeExtendido.convertirMensaje(mensaje);
         System.out.println("Mensaje extendido en bits:");
@@ -124,7 +123,7 @@ public class Sha256 {
             
         //Paso 5 Inicializar Los registros y registros temporales
         int[] registroA = h0;
-        int[] registroB = h3;
+        int[] registroB = h1;
         int[] registroC = h2;
         int[] registroD = h3;
         int[] registroE = h4;
@@ -142,6 +141,7 @@ public class Sha256 {
         
         //SubPaso 6.2 Dividir cada pieza en 16 partes de 32 bits y asignarlas a las primeras 16 palabras
         for (int i = 0; i < cantPiezas; i++) { 
+            
             int fila = 0;
             if (!piezas.isEmpty()) { 
                 int[] pieza = piezas.get(i); 
@@ -154,7 +154,6 @@ public class Sha256 {
         
         //Paso 6.3 Para las palabras 17 a 64 asignarlas siguiendo la función 
             for (int f = 16; f < 64; f++) {
-                
                 long sigma1 = BinaryToDecimal.binaryToDecimal(Sigma1.sigma1(arregloW[f - 2]));
                 long w7 = BinaryToDecimal.binaryToDecimal(arregloW[f - 7]);
                 long sigma0 = BinaryToDecimal.binaryToDecimal(Sigma0.sigma0(arregloW[f - 15]));
@@ -198,15 +197,12 @@ public class Sha256 {
         registroG = registroF;
         registroF = registroE;
         long  regD = BinaryToDecimal.binaryToDecimal(registroD);
-        long  regT1 = BinaryToDecimal.binaryToDecimal(registroT1);
-        long result3 = ModuloSum.moduloSum(regD, regT1);
+        long result3 = ModuloSum.moduloSum(regD, result);
         registroE = DecimalToBinary.decimalToBinary(Math.abs(result3));
         registroD = registroC;
         registroC = registroB;
         registroB = registroA;
-        long  regT1v2 = BinaryToDecimal.binaryToDecimal(registroT1);
-        long  regT2 = BinaryToDecimal.binaryToDecimal(registroT2);
-        long result4 = ModuloSum.moduloSum(regT1v2, regT2);
+        long result4 = ModuloSum.moduloSum(result, result2);
         registroA = DecimalToBinary.decimalToBinary(Math.abs(result4));
         }
         
@@ -253,7 +249,63 @@ public class Sha256 {
         registroF= h5;
         registroG= h6;
         registroH= h7;
-        
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h0 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h0[r]+ ", ");
+        }
+        System.out.print(h0[31]+ "}");
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h1 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h1[r]+ ", ");
+        }
+        System.out.print(h1[31]+ "}");
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h2 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h2[r]+ ", ");
+        }
+        System.out.print(h2[31]+ "}");
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h3 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h3[r]+ ", ");
+        }
+        System.out.print(h3[31]+ "}");
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h4 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h4[r]+ ", ");
+        }
+        System.out.print(h4[31]+ "}");
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h5 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h5[r]+ ", ");
+        }
+        System.out.print(h5[31]+ "}");
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h6 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h6[r]+ ", ");
+        }
+        System.out.print(h6[31]+ "}");
+        System.out.println("");
+        System.out.println("en la vuelta: "+ i + " El valor del h7 es de: ");
+        System.out.print("{");
+        for(int r = 0; r<31; r++){
+            System.out.print(h7[r]+ ", ");
+        }
+        System.out.print(h7[31]+ "}");
+        System.out.println("");
  
         }
 

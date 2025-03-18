@@ -4,7 +4,6 @@
  */
 package sha256;
 
-import java.math.BigInteger;
 
 /**
  *

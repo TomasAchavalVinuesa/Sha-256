@@ -4,7 +4,6 @@
  */
 package sha256;
 
-import java.math.BigInteger;
 
 /**
  *
@@ -20,12 +19,7 @@ public class Choose {
         int[] notx = Not.not(x);
         int[] andnotxz = And.and(notx, z);
         
-        long decimalAndxy = BinaryToDecimal.binaryToDecimal(andxy);
-        long decimalandnotxz = BinaryToDecimal.binaryToDecimal(andnotxz);
-        
-        long sumMod232 = ModuloSum.moduloSum(decimalAndxy, decimalandnotxz);
-        
-        return DecimalToBinary.decimalToBinary(sumMod232);
+        return Xor.xor(andxy, andnotxz);
     }
 }
 

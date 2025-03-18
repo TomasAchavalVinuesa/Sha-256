@@ -24,6 +24,7 @@ public class BinaryToHexadecimal {
 
         // Convertir el binario a hexadecimal
         int decimalValue = Integer.parseUnsignedInt(binaryString.toString(), 2);
-        return Integer.toHexString(decimalValue).toUpperCase();
+        return String.format("%08X", decimalValue);
+
     }
 }

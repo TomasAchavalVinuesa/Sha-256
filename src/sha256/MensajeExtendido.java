@@ -40,9 +40,8 @@ public class MensajeExtendido {
         //Fin SubPaso 2.3
         
         //SubPaso 2.4 Calcular la cantidad de ceros a añadir
-        int cerosFaltantes = Math.abs((448 - L - 1) % 512);
-        cerosFaltantes = Math.abs(cerosFaltantes - 512);
-        System.out.println("Cantidad de ceros faltantes: "+ cerosFaltantes);
+        int cerosFaltantes = (448 - (L + 1) % 512 + 512) % 512;
+        System.out.println("Cantidad de ceros faltantes: " + cerosFaltantes);
         //Fin subPaso 2.4
         
         //SubPaso 2.5 añadir los 0 necesarios
